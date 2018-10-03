@@ -1,18 +1,18 @@
+body,html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  background-color: #282c34;
+  min-height: 100vh;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -22,11 +22,34 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.post-deck {
+  background: aquamarine;
+  width: 350px;
+  height: 700px;
+  overflow: auto;
+  text-align: left;
+}
+
+.post {
+  background: #eee;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.post-deck-header {
+  position: sticky;
+  background: orange;
+  top: 0;
+}
+
+.post-deck-header h2 {
+  margin-top: 0;
+}
+
+.post-title {
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden; 
 }
