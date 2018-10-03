@@ -2,9 +2,15 @@ body,html {
   margin: 0;
   padding: 0;
 }
+
 * {
   box-sizing: border-box;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
 .App {
   text-align: center;
   background-color: #282c34;
@@ -25,7 +31,7 @@ body,html {
 .post-deck {
   background: aquamarine;
   width: 350px;
-  height: 700px;
+  height: 800px;
   overflow: auto;
   text-align: left;
 }
@@ -33,7 +39,8 @@ body,html {
 .post {
   background: #eee;
   height: 150px;
-  margin-bottom: 10px;
+  margin: 10px 0;
+  border: 1px solid orange;
 }
 
 .post-deck-header {
@@ -42,14 +49,14 @@ body,html {
   top: 0;
 }
 
-.post-deck-header h2 {
-  margin-top: 0;
-}
-
 .post-title {
   text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
   overflow: hidden; 
+}
+
+.post-wrapper {
+  padding: 5px;
 }
