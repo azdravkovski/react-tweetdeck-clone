@@ -32,36 +32,22 @@ class MainWrapper extends Component {
 
 class PostDeck extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       posts: [],
-      value: ''
-    }
-
-    this.handleChange = this.handleChange.bind(this);
-
+      value: ""
+    };
   }
 
   componentDidMount() {
-    this.fetchPosts()
+    this.fetchPosts();
   }
 
   handleChange(e) {
     this.setState({
       value: e.target.value
-    })
-    this.filterPosts();
-    console.log(this.state.value);
-  }
-
-  filterPosts() {
-    let filteredPosts = this.state.posts.filter(post => {
-      return post.title.toLowerCase().indexOf(this.state.value) !== -1;
     });
-    this.setState({
-      posts: filteredPosts
-    })
   }
 
   fetchPosts() {
@@ -69,25 +55,20 @@ class PostDeck extends Component {
       .then(data => data.json())
       .then(result => {
         let posts = result.filter((post, i) => {
-          while (i < 10 && post !== undefined) {
-            return {
-              title: post.title,
-              body: post.body
-            }
+          if (i < 10 && post !== undefined) {
+            return post;
           }
-        })
-        this.setState({
-          posts: posts
-        })
-      }
-      )
+        });
+        this.setState({ posts });
+      });
   }
 
   renderPosts() {
-    let renderedPosts = this.state.posts.map((post, i) => {
-      return <Post key={i} title={post.title} body={post.body} />;
-    })
-    return renderedPosts;
+    const { posts, value } = this.state;
+    return posts
+      .filter(post => !value || post.title.toLowerCase().includes(value.toLowerCase()))
+      .map(post => <Post key={post.id} {...post} />);
+
   }
 
   render() {
@@ -95,20 +76,17 @@ class PostDeck extends Component {
       <div className="post-deck">
         <div className="post-deck-header">
           <h2>Posts</h2>
-          <input type="text" placeholder="Filter..." value={this.state.value} onChange={this.handleChange} />
+          <input
+            type="text"
+            placeholder="Filter..."
+            value={this.state.value}
+            onChange={this.handleChange.bind(this)}
+          />
         </div>
-        <PostWrapper posts={this.renderPosts()} />
+        <div className="post-wrapper">{this.renderPosts()}</div>
       </div>
-    )
+    );
   }
-}
-
-const PostWrapper = (props) => {
-  return (
-    <div className="post-wrapper">
-      {props.posts}
-    </div>
-  )
 }
 
 const Post = (props) => {
