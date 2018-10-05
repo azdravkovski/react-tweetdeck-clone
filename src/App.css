@@ -43,12 +43,15 @@ h6 {
 /* POST STYLES */
 
 .post-deck {
+    position: sticky;
+    left: 0;
+    z-index: 100;
     background: aquamarine;
     width: 350px;
     height: 800px;
     overflow: auto;
     text-align: left;
-    margin: 0 10px;
+    margin: 0 0 10px;
     flex: 0 0 auto;
 }
 

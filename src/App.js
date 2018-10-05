@@ -26,29 +26,40 @@ class MainWrapper extends Component {
 
     this.state = {
       comments: [],
-      commentDecks: []
+      commentDecks: [],
+      isActive: true
     }
 
     this.fetchComments = this.fetchComments.bind(this);
+    this.closeDeck = this.closeDeck.bind(this);
   }
 
   fetchComments(id) {
+    let addedDecks = [];
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
       .then(data => data.json())
       .then(result => {
         let comments = result.map(comment => {
           return comment;
         })
-        //Add CommentDecks to state
-        let addedDecks = [];
-        addedDecks.push(<CommentDeck comments={comments} />);
+        return comments;
+      })
+      .then(comments => {
+        addedDecks.push(<CommentDeck comments={comments} onClose={this.closeDeck} show={true} />);
         this.setState({
           comments: comments,
-          commentDecks: [...this.state.commentDecks, addedDecks]
+          commentDecks: [...this.state.commentDecks, ...addedDecks],
+          isActive: false
         })
-        console.log(this.state.commentDecks)
       })
       .catch(error => console.log(error))
+  }
+
+  closeDeck() {
+    this.setState({
+      isActive: false,
+    });
+    console.log(this.state.isActive);
   }
 
   render() {
@@ -132,20 +143,24 @@ const Post = (props) => {
 }
 
 const CommentDeck = (props) => {
-  return (
-    <div className="comment-deck">
-      <div className="comment-deck-header">
-        <h2>Comments</h2>
-        <span>×</span>
+  if (props.show) {
+    return (
+      <div className="comment-deck">
+        <div className="comment-deck-header">
+          <h2>Comments</h2>
+          <span onClick={props.onClose}>×</span>
+        </div>
+        <div className="comment-wrapper">
+          {props.comments.map(comment => {
+            return <Comment name={comment.name} body={comment.body} />
+          })}
+        </div>
       </div>
-      <div className="comment-wrapper">
-        {props.comments.map(comment => {
-          return <Comment name={comment.name} body={comment.body} />
-        })}
-      </div>
-    </div>
-
-  )
+    )
+  } else {
+    console.log(props.show);
+    return null
+  }
 }
 
 const Comment = (props) => {
