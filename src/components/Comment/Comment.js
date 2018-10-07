@@ -1,13 +1,17 @@
-import React from 'react';
-import './Comment.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchComments } from "../../actions/deckActions";
+import "./Comment.css";
 
-const Comment = (props) => {
-  return (
-    <div className="comment">
-      <h3 className="comment-name">{props.name}</h3>
-      <p className="comment-body">{props.body}</p>
-    </div>
-  )
+class Comment extends Component {
+  render() {
+    return (
+      <div className="comment">
+        <h3 className="comment-name">{this.props.comment.name}</h3>
+        <p className="comment-body">{this.props.comment.body}</p>
+      </div>
+    );
+  }
 }
 
-export default Comment;
+export default connect(null, { fetchComments })(Comment);

@@ -1,48 +1,36 @@
-import React, { Component } from 'react';
-import Post from '../Post/Post';
-import './PostDeck.css';
+import React, { Component } from "react";
+import Post from "../Post/Post";
+import FilterBar from "../FilterBar/FilterBar";
+import { connect } from "react-redux";
+import { fetchPosts } from "../../actions/deckActions";
+import "./PostDeck.css";
 
 class PostDeck extends Component {
-  constructor(props) {
-    super(props);
+  // renderPosts() {
+  //   const { posts, value } = this.state;
+  //   return posts
+  //     .filter(post => !value || post.title.toLowerCase().includes(value.toLowerCase()))
+  //     .map(post => <Post key={post.id} {...post} id={post.id} postClick={this.props.postClick} />);
 
-    this.state = {
-      posts: [],
-      value: ""
-    };
-
-  }
-
-  componentDidMount() {
-    this.fetchPosts();
-  }
-
-  handleChange(e) {
-    this.setState({
-      value: e.target.value
-    });
-  }
-
-  fetchPosts() {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(data => data.json())
-      .then(result => {
-        let posts = result.filter((post, i) => {
-          if (i < 10 && post !== undefined) {
-            return post;
-          }
-        });
-        this.setState({ posts });
-      })
-      .catch(error => console.log(error));
-  }
+  // }
 
   renderPosts() {
-    const { posts, value } = this.state;
-    return posts
-      .filter(post => !value || post.title.toLowerCase().includes(value.toLowerCase()))
-      .map(post => <Post key={post.id} {...post} id={post.id} postClick={this.props.postClick} />);
+    let postDeckItems;
 
+    const { posts } = this.props;
+    const { filterKeyword } = this.props;
+
+    if (posts.length > 0) {
+      let filteredPosts = posts.filter(post => {
+        return post.title.toLowerCase().includes(filterKeyword.toLowerCase());
+      });
+
+      postDeckItems = filteredPosts.map(post => {
+        return <Post key={post.id} post={post} />;
+      });
+    }
+
+    return postDeckItems;
   }
 
   render() {
@@ -50,12 +38,7 @@ class PostDeck extends Component {
       <div className="post-deck">
         <div className="post-deck-header">
           <h2>Posts</h2>
-          <input
-            type="text"
-            placeholder="Filter..."
-            value={this.state.value}
-            onChange={this.handleChange.bind(this)}
-          />
+          <FilterBar />
         </div>
         <div className="post-wrapper">{this.renderPosts()}</div>
       </div>
@@ -63,4 +46,12 @@ class PostDeck extends Component {
   }
 }
 
-export default PostDeck;
+const mapStateToProps = state => ({
+  posts: state.deck.posts,
+  filterKeyword: state.deck.filterKeyword
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchPosts }
+)(PostDeck);
