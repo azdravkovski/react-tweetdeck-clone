@@ -1,0 +1,21 @@
+.post {
+  background: #eee;
+  height: 150px;
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px solid orange;
+  cursor: pointer;
+  overflow-y: hidden;
+}
+
+.post:hover {
+  border: 2px solid green;
+}
+
+.post-title {
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+}

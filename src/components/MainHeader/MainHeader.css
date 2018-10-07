@@ -1,0 +1,15 @@
+.main-header {
+  display: flex;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.main-header h1 {
+  margin-right: 10px;
+}
+
+.main-header p {
+  font-size: 20px;
+  font-variant: small-caps; 
+}
