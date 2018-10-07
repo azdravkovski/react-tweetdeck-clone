@@ -1,0 +1,16 @@
+.comment {
+  background: #eee;
+  height: 150px;
+  margin: 10px 0;
+  border: 1px solid orange;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.comment-name {
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+}

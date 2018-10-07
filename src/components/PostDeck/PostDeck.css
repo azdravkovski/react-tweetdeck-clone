@@ -1,0 +1,21 @@
+.post-deck {
+  position: sticky;
+  left: 0;
+  z-index: 100;
+  background: aquamarine;
+  width: 350px;
+  height: 800px;
+  overflow: auto;
+  margin: 0 0 10px;
+  flex: 0 0 auto;
+}
+
+.post-deck-header {
+  position: sticky;
+  background: orange;
+  top: 0;
+}
+
+.post-wrapper {
+  padding: 5px;
+}

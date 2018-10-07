@@ -1,0 +1,24 @@
+.comment-deck {
+  background: papayawhip;
+  width: 350px;
+  height: 800px;
+  overflow: auto;
+  text-align: left;
+  margin: 0 20px;
+  flex: 0 0 auto;
+}
+
+.comment-deck-header {
+  position: sticky;
+  background: plum;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.comment-deck-header span {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+}
