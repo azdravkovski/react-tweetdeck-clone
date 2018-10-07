@@ -21,7 +21,7 @@ class MainWrapper extends Component {
   render() {
     return (
       <div className="main-wrapper">
-        <PostDeck posts={this.props.posts.slice(0, 10)} />
+        <PostDeck posts={this.props.posts} />
         {this.renderCommentDecks()}
       </div>
     );

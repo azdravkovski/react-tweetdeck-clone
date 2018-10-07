@@ -5,6 +5,11 @@
   border: 1px solid orange;
   cursor: pointer;
   padding: 5px;
+  overflow-y: hidden;
+}
+
+.comment:hover {
+  border: 2px solid red;
 }
 
 .comment-name {

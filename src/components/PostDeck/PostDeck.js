@@ -6,18 +6,10 @@ import { fetchPosts } from "../../actions/deckActions";
 import "./PostDeck.css";
 
 class PostDeck extends Component {
-  // renderPosts() {
-  //   const { posts, value } = this.state;
-  //   return posts
-  //     .filter(post => !value || post.title.toLowerCase().includes(value.toLowerCase()))
-  //     .map(post => <Post key={post.id} {...post} id={post.id} postClick={this.props.postClick} />);
-
-  // }
-
   renderPosts() {
     let postDeckItems;
 
-    const { posts } = this.props;
+    const posts = this.props.posts.slice(0, 10);
     const { filterKeyword } = this.props;
 
     if (posts.length > 0) {

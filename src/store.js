@@ -11,6 +11,6 @@ const store = createStore(
   applyMiddleware(...middleware)
 );
 
-console.log(store.getState());
+console.log(localStorage);
 
 export default store;
