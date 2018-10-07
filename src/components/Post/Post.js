@@ -12,7 +12,9 @@ class Post extends Component {
           this.props.fetchComments(this.props.post.id, this.props.post.title)
         }
       >
-        <h3 className="post-title">{this.props.post.id}. {this.props.post.title}</h3>
+        <h3 className="post-title">
+          {this.props.post.id}. {this.props.post.title}
+        </h3>
         <p className="post-body">{this.props.post.body}</p>
       </div>
     );

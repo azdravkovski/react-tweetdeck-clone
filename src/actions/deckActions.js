@@ -1,4 +1,9 @@
-import { FETCH_POSTS, FETCH_COMMENTS, FILTER_POSTS, CLOSE_DECK } from "./deckActionTypes";
+import {
+  FETCH_POSTS,
+  FETCH_COMMENTS,
+  FILTER_POSTS,
+  CLOSE_DECK
+} from "./deckActionTypes";
 
 export const fetchPosts = () => dispatch => {
   fetch("https://jsonplaceholder.typicode.com/posts")
@@ -26,10 +31,10 @@ export const fetchComments = (id, title) => dispatch => {
     });
 };
 
-export const filterPosts = searchStr => dispatch => {
+export const filterPosts = filterKeyword => dispatch => {
   dispatch({
     type: FILTER_POSTS,
-    payload: searchStr
+    payload: filterKeyword
   });
 };
 
